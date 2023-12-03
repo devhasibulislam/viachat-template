@@ -72,13 +72,23 @@ yarn init
 yarn add express typescript @types/node @types/express ts-node
 ```
 
-````bash
+```bash
 yarn tsc --init
 ```
 
 ```bash
-yarn add nodemon -D
-````
+yarn add nodemon concurrently @types/cors -D
+```
+
+```bash
+"scripts": {
+    "build": "rimraf dist && yarn tsc",
+    "prestart": "yarn run build",
+    "start": "node dist/index.js",
+    "preserve": "yarn run build",
+    "serve": "concurrently \"yarn tsc -w\"  \"nodemon dist/index.js\""
+},
+```
 
 # Author
 
