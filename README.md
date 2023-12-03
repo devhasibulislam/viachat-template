@@ -9,8 +9,8 @@
 ## Reference
 
 - [x] Inspiration Link: [Click Here](https://themesbrand.com/chatvia-tailwind/layouts/index.html)
-- [ ] Client Side Link: [Click Here](https://viachat-template-csr.vercel.app)
-- [ ] Server Side Link: [Click Here](https://viachat-template-ssr.vercel.app)
+- [x] Client Side Link: [Click Here](https://viachat-template-csr.vercel.app)
+- [x] Server Side Link: [Click Here](https://viachat-template-ssr.vercel.app)
 
 ## Clone Repository
 
