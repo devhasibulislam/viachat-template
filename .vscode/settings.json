@@ -1,12 +1,13 @@
 {
   "cSpell.words": [
-    "devhasibulislam",
     "cloudinary",
     "cludinary",
+    "devhasibulislam",
     "hasibul",
+    "pinterest",
     "prestart",
-    "viachat",
-    "pinterest"
+    "reduxjs",
+    "viachat"
   ],
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
