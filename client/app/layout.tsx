@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter, Ubuntu } from "next/font/google";
 import "./globals.css";
+import State from "@/components/redux/State";
+import Persistance from "@/components/redux/Persistance";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -28,7 +30,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${ubuntu.variable}`}>{children}</body>
+      <body className={`${inter.variable} ${ubuntu.variable}`}>
+        <State>
+          <Persistance>{children}</Persistance>
+        </State>
+      </body>
     </html>
   );
 }
