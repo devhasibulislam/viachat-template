@@ -3,6 +3,7 @@ import { Inter, Ubuntu } from "next/font/google";
 import "./globals.css";
 import State from "@/components/redux/State";
 import Persistance from "@/components/redux/Persistance";
+import { Providers } from "../components/nextui/providers";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -32,7 +33,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.variable} ${ubuntu.variable}`}>
         <State>
-          <Persistance>{children}</Persistance>
+          <Persistance>
+            <Providers>{children}</Providers>
+          </Persistance>
         </State>
       </body>
     </html>
