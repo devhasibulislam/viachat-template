@@ -14,7 +14,7 @@
  */
 
 import conversations from "@/data/conversations";
-import { Avatar, ScrollShadow } from "@nextui-org/react";
+import { Avatar, ScrollShadow, Tooltip } from "@nextui-org/react";
 import React from "react";
 
 const Body = () => {
@@ -29,13 +29,25 @@ const Body = () => {
 
           {/* Receiver's Messages */}
           <div className="w-[45%] mr-auto flex flex-row items-end gap-x-2">
-            <div>
-              <Avatar
-                src="https://i.pravatar.cc/50"
-                className="h-[30px] w-[30px] rounded-full"
-              />
-            </div>
-            <div className="flex flex-col gap-y-2.5">
+            <Tooltip
+              content="John Doe"
+              placement="bottom"
+              classNames={{
+                base: ["before:bg-neutral-400"],
+                content: [
+                  "py-2 px-4 shadow-xl",
+                  "text-black bg-gradient-to-br from-white to-neutral-400",
+                ],
+              }}
+            >
+              <div className="order-1">
+                <Avatar
+                  src="https://i.pravatar.cc/50"
+                  className="h-[30px] w-[30px] rounded-full"
+                />
+              </div>
+            </Tooltip>
+            <div className="flex flex-col gap-y-2.5 order-2">
               {conversation?.receiver.map((message) => (
                 <p
                   key={message}
@@ -49,12 +61,24 @@ const Body = () => {
 
           {/* Sender's Messages */}
           <div className="w-[45%] ml-auto flex flex-row items-end gap-x-2">
-            <div className="order-2">
-              <Avatar
-                src="https://i.pravatar.cc/50"
-                className="h-[30px] w-[30px] rounded-full"
-              />
-            </div>
+            <Tooltip
+              content="Marry Kom"
+              placement="bottom"
+              classNames={{
+                base: ["before:bg-neutral-400"],
+                content: [
+                  "py-2 px-4 shadow-xl",
+                  "text-black bg-gradient-to-br from-white to-neutral-400",
+                ],
+              }}
+            >
+              <div className="order-2">
+                <Avatar
+                  src="https://i.pravatar.cc/50"
+                  className="h-[30px] w-[30px] rounded-full"
+                />
+              </div>
+            </Tooltip>
             <div className="flex flex-col gap-y-2.5 order-1">
               {conversation?.sender.map((message) => (
                 <p
