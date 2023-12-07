@@ -90,6 +90,8 @@ yarn add nodemon concurrently @types/cors -D
 },
 ```
 
+> Add a `.js` flag after every internal import ✔️
+
 # Author
 
 - [Hasibul Islam](https://bento.me/devhasibulislam)
