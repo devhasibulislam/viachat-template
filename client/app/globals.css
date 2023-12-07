@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  @apply bg-[#252e35];
+  @apply bg-[#252e35] text-white;
 }
 
 p,
