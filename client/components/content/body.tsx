@@ -40,7 +40,7 @@ const Body = () => {
                 ],
               }}
             >
-              <div className="order-1">
+              <div className="order-1 h-[30px] w-[30px]">
                 <Avatar
                   src="https://i.pravatar.cc/50"
                   className="h-[30px] w-[30px] rounded-full"
@@ -72,7 +72,7 @@ const Body = () => {
                 ],
               }}
             >
-              <div className="order-2">
+              <div className="order-2 h-[30px] w-[30px]">
                 <Avatar
                   src="https://i.pravatar.cc/50"
                   className="h-[30px] w-[30px] rounded-full"
