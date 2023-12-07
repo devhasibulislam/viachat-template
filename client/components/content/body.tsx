@@ -14,18 +14,36 @@
  */
 
 import conversations from "@/data/conversations";
+import { ScrollShadow } from "@nextui-org/react";
 import React from "react";
 
 const Body = () => {
   return (
-    <section className="h-full border rounded-lg flex flex-row justify-center items-center p-3">
-      {conversations.map((conversation) => (
-        <div key={conversation?._id} className="">
-          {/* Write code here */}
+    <ScrollShadow
+      hideScrollBar
+      className="h-full border rounded-lg p-3 overflow-y-auto"
+    >
+      {conversations?.map((conversation) => (
+        <div key={conversation?._id} className="flex flex-col gap-y-2.5">
+          {conversation?.receiver.map((message) => (
+            <p
+              key={message}
+              className="w-[45%] mr-auto bg-[#705ad3] p-2 rounded-md text-sm"
+            >
+              {message}
+            </p>
+          ))}
+          {conversation?.sender.map((message) => (
+            <p
+              key={message}
+              className="w-[45%] ml-auto bg-[#705ad3] p-2 rounded-md text-sm"
+            >
+              {message}
+            </p>
+          ))}
         </div>
       ))}
-      Message Body
-    </section>
+    </ScrollShadow>
   );
 };
 
