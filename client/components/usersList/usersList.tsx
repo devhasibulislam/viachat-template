@@ -33,10 +33,12 @@ const UsersList = () => {
       hideScrollBar
       className="h-full w-full flex flex-col gap-y-4 overflow-y-auto"
     >
-      {users.map((user) => (
+      {users.map((user, index) => (
         <div
           key={user?._id}
-          className="flex flex-row gap-x-2 items-start cursor-pointer"
+          className={`flex flex-row gap-x-2 items-start cursor-pointer p-2 rounded-lg ${
+            index === 0 && "bg-[#7852ce]"
+          }`}
         >
           <div className="h-[30px] w-[30px]">
             <Avatar
@@ -47,7 +49,7 @@ const UsersList = () => {
           <article className="flex flex-col gap-y-0.5">
             <h2 className="text-base line-clamp-1">{user?.name}</h2>
             <p className="text-xs line-clamp-2 text-slate-300">{user?.text}</p>
-            <span className="!text-xs">
+            <span className="!text-xs text-slate-400">
               {momentDifference(user?.createdAt)}
             </span>
           </article>
