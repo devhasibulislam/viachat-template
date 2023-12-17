@@ -20,7 +20,7 @@ import Footer from "../content/footer";
 
 const Contents = (): React.ReactNode => {
   return (
-    <section className="col-span-8 h-full w-full overflow-y-hidden">
+    <section className="md:col-span-8 col-span-12 h-full w-full overflow-y-hidden">
       <div className="h-full w-full flex flex-col gap-y-4">
         <Header />
         <Body />
