@@ -22,7 +22,7 @@ const Footer = (): React.ReactNode => {
   return (
     <form className="flex flex-row items-center gap-x-2">
       <Tooltip
-        content="Send Photos"
+        content="Send upto 5 Photos/Videos"
         placement="top"
         classNames={{
           base: ["before:bg-neutral-400"],
