@@ -21,7 +21,7 @@ import { MdVideoCall } from "react-icons/md";
 const Header = () => {
   return (
     <section className="border rounded-lg flex flex-row justify-between items-center p-3">
-      <h1 className="font-bold text-lg">John Doe</h1>
+      <h1 className="font-bold text-lg line-clamp-1">John Doe</h1>
       <p className="flex flex-row gap-x-2">
         <Tooltip
           content="Voice Call"
