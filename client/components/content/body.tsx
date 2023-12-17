@@ -13,13 +13,25 @@
  * Date: 07, December 2023
  */
 
+"use client";
+
 import conversations from "@/data/conversations";
 import { Avatar, ScrollShadow, Tooltip } from "@nextui-org/react";
-import React from "react";
+import React, { useRef, useEffect } from "react";
 
-const Body = () => {
+const Body = (): React.ReactNode => {
+  const scrollRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    // Scroll to bottom when component mounts or conversations change
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+    }
+  }, [conversations]);
+
   return (
     <ScrollShadow
+      ref={scrollRef}
       hideScrollBar
       className="h-full border rounded-lg p-3 overflow-y-auto"
     >
@@ -28,7 +40,7 @@ const Body = () => {
           <div />
 
           {/* Receiver's Messages */}
-          <div className="w-[45%] mr-auto flex flex-row items-end gap-x-2">
+          <div className="lg:w-[45%] md:w-[48%] w-3/4 mr-auto flex flex-row items-end gap-x-2">
             <Tooltip
               content="John Doe"
               placement="bottom"
@@ -60,7 +72,7 @@ const Body = () => {
           </div>
 
           {/* Sender's Messages */}
-          <div className="w-[45%] ml-auto flex flex-row items-end gap-x-2">
+          <div className="lg:w-[45%] md:w-[48%] w-3/4 ml-auto flex flex-row items-end gap-x-2">
             <Tooltip
               content="Marry Kom"
               placement="bottom"
