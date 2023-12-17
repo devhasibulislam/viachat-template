@@ -13,6 +13,7 @@
  * Date: 04, December 2023
  */
 
+import sidebarSlice from "@/features/sidebar/sidebarSlice";
 import userFilterSlice from "@/features/userFilter/userFilterSlice";
 import { viaChatApi } from "@/services/viaChat";
 import { configureStore } from "@reduxjs/toolkit";
@@ -21,6 +22,7 @@ export const store = configureStore({
   reducer: {
     [viaChatApi.reducerPath]: viaChatApi.reducer,
     userFilter: userFilterSlice,
+    sidebar: sidebarSlice,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(),
   devTools: process.env.NODE_ENV !== "production",
