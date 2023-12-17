@@ -19,7 +19,7 @@ import UsersList from "../usersList/usersList";
 
 const Recipients = (): React.ReactNode => {
   return (
-    <section className="col-span-4 h-full w-full overflow-hidden">
+    <section className="md:block md:col-span-4 md:h-full md:w-full md:overflow-hidden hidden">
       <div className="h-full w-full flex flex-col gap-y-4">
         {/* User Filter */}
         <UserFilter />
