@@ -13,13 +13,22 @@
  * Date: 05, December 2023
  */
 
+"use client";
+
 import Recipients from "@/components/layouts/recipients";
 import Contents from "@/components/layouts/contents";
 import React from "react";
 import Navbar from "@/components/header/navbar";
 import Footer from "@/components/footer/footer";
+import Sidebar from "@/components/content/sidebar";
+import { useSelector } from "react-redux";
 
 export default function Home(): React.ReactNode {
+  const sidebar = useSelector(
+    (state: { sidebar: { expand: boolean; collapse: boolean } }) =>
+      state.sidebar
+  );
+
   return (
     <main className="h-screen w-screen">
       <section className="max-w-5xl mx-auto h-full flex flex-col gap-y-4 p-2">
@@ -27,9 +36,15 @@ export default function Home(): React.ReactNode {
         <Navbar />
 
         {/* Chat Section */}
-        <section className="grid grid-cols-12 gap-x-4 h-full overflow-hidden">
-          <Recipients />
-          <Contents />
+        <section className="grid grid-cols-12 gap-x-4 h-full overflow-hidden relative">
+          {sidebar.collapse && (
+            <>
+              <Recipients />
+              <Contents />
+            </>
+          )}
+
+          {sidebar.expand && <Sidebar />}
         </section>
 
         {/* Footer Section */}
