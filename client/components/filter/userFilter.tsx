@@ -32,7 +32,7 @@ const UserFilter = (): React.ReactNode => {
     <Input
       size="sm"
       radius="sm"
-      type="text"
+      type="search"
       variant="bordered"
       onValueChange={getUserName}
       classNames={{
