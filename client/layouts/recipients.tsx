@@ -1,5 +1,5 @@
 /**
- * Title: Write a program using JavaScript on Contents
+ * Title: Write a program using JavaScript on Recipients
  * Author: Hasibul Islam
  * Portfolio: https://devhasibulislam.vercel.app
  * Linkedin: https://linkedin.com/in/devhasibulislam
@@ -14,20 +14,21 @@
  */
 
 import React from "react";
-import Header from "../content/header";
-import Body from "../content/body";
-import Footer from "../content/footer";
+import UserFilter from "../components/filter/userFilter";
+import UsersList from "../components/usersList/usersList";
 
-const Contents = (): React.ReactNode => {
+const Recipients = (): React.ReactNode => {
   return (
-    <section className="md:col-span-8 col-span-12 h-full w-full overflow-y-hidden">
+    <section className="md:block md:col-span-4 md:h-full md:w-full md:overflow-hidden hidden">
       <div className="h-full w-full flex flex-col gap-y-4">
-        <Header />
-        <Body />
-        <Footer />
+        {/* User Filter */}
+        <UserFilter />
+
+        {/* Users List */}
+        <UsersList />
       </div>
     </section>
   );
 };
 
-export default Contents;
+export default Recipients;
