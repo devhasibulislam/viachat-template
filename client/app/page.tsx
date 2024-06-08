@@ -15,8 +15,8 @@
 
 "use client";
 
-import Recipients from "@/components/layouts/recipients";
-import Contents from "@/components/layouts/contents";
+import Recipients from "@/layouts/recipients";
+import Contents from "@/layouts/contents";
 import React from "react";
 import Navbar from "@/components/header/navbar";
 import Footer from "@/components/footer/footer";
