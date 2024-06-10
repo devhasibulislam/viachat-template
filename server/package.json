@@ -15,7 +15,7 @@
     "lint:fix": "lint --fix",
     "prettier:format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
     "lint-prettier": "yarn lint:check && yarn prettier:format",
-    "prepare": "husky"
+    "prepare": "husky || true"
   },
   "lint-staged": {
     "src/**/*.ts": "yarn lint-prettier"
