@@ -29,9 +29,8 @@ const UsersList = () => {
   };
 
   return (
-    <ScrollShadow
-      hideScrollBar
-      className="h-full w-full flex flex-col gap-y-4 overflow-y-auto"
+    <section
+      className="h-full w-full flex flex-col gap-y-4 overflow-y-auto border rounded-lg p-3 scrollbar-hide"
     >
       {users.map((user, index) => (
         <div
@@ -55,7 +54,7 @@ const UsersList = () => {
           </article>
         </div>
       ))}
-    </ScrollShadow>
+    </section>
   );
 };
 

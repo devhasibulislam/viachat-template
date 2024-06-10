@@ -30,10 +30,9 @@ const Body = (): React.ReactNode => {
   }, [conversations]);
 
   return (
-    <ScrollShadow
+    <section
       ref={scrollRef}
-      hideScrollBar
-      className="h-full border rounded-lg p-3 overflow-y-auto"
+      className="h-full border rounded-lg p-3 overflow-y-auto scrollbar-hide"
     >
       {conversations?.map((conversation) => (
         <div key={conversation?._id} className="flex flex-col gap-y-4">
@@ -106,7 +105,7 @@ const Body = (): React.ReactNode => {
           <div />
         </div>
       ))}
-    </ScrollShadow>
+    </section>
   );
 };
 

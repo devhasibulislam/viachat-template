@@ -38,7 +38,16 @@ const Login = (): React.ReactNode => {
         <div className="col-span-3 h-full w-full p-6 flex flex-col gap-y-12">
           <div className="flex flex-col gap-y-6">
             {/* Logo Section */}
-            <Image src="/logo.svg" alt="logo" height={50} width={50} />
+            <Image
+              src="/logo.svg"
+              alt="logo"
+              height={50}
+              width={50}
+              className="cursor-pointer"
+              onClick={() => {
+                if (typeof window !== "undefined") window.location.href = "/";
+              }}
+            />
             <h2 className="text-black text-4xl font-bold">
               Signin Your Account
             </h2>
