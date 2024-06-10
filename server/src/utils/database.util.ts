@@ -13,22 +13,26 @@
  * Date: 09, June 2024
  */
 
-const mongoose = require("mongoose");
-const dotenv = require("dotenv");
+import mongoose from "mongoose";
+import * as dotenv from "dotenv";
 dotenv.config();
 
-let connection: Promise<typeof mongoose> | null = null;
+let connection: typeof mongoose | null = null;
 
 const connectDB = async () => {
   try {
     if (connection) return;
 
+    if (!process.env.ATLAS_URI) {
+      throw new Error("ATLAS_URI is not defined in the environment variables.");
+    }
+
     connection = await mongoose.connect(process.env.ATLAS_URI, {});
-    console.log("Successfully connected to MongoDB");
+    console.info("Successfully connected to MongoDB");
   } catch (error) {
     console.error(error);
     process.exit(1);
   }
 };
 
-module.exports = connectDB;
+export default connectDB;

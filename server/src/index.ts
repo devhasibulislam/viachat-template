@@ -14,28 +14,17 @@
  */
 
 /* external imports */
-import mongoose from "mongoose";
 import * as dotenv from "dotenv";
 
 /* internal imports */
-import app from "./app.js";
+import connectDB from "./utils/database.util";
+import app from "./app";
 dotenv.config();
 
 const port = process.env.PORT;
 
 /* database connection */
-const mongodbUri: string =
-  process.env.ATLAS_URI || "mongodb://localhost:27017/viachat-template";
-mongoose
-  .connect(mongodbUri)
-  .then(() => console.log("Connected to MongoDB."))
-  .catch((error: any) => {
-    if (error instanceof Error && error.message) {
-      console.error(error.message);
-    } else {
-      console.error("An unknown error occurred.");
-    }
-  });
+connectDB();
 
 /* establish server port */
 app.listen(port, () => {

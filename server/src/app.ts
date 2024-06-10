@@ -20,7 +20,7 @@ import cors from "cors";
 
 /* internal import */
 dotenv.config();
-import error from "./middleware/error.middleware.js";
+import error from "./middleware/error.middleware";
 
 /* application level connection */
 let app: Express = express();
