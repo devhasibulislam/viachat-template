@@ -15,9 +15,15 @@
 
 "use client";
 
+import useToastMessage from "@/hooks/useToastMessage";
+import { usePersistQuery } from "@/services/auth/authApi";
 import React, { ReactNode } from "react";
 
 const Persistance = ({ children }: { children: ReactNode }) => {
+  const { data, error, isLoading } = usePersistQuery({});
+
+  useToastMessage(data, error, isLoading);
+
   return <> {children} </>;
 };
 
