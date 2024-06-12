@@ -53,6 +53,7 @@ ATLAS_URI="mongodb://localhost:27017/viachat-template"
 
 # JWT secret
 TOKEN_SECRET="8fd66885579f568092507e57a9336bb8"
+TOKEN_EXPIRES="1h"
 
 # Cloudinary credentials
 CLOUD_NAME="CLOUDINARY_CLOUD_NAME"
