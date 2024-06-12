@@ -23,16 +23,7 @@ import token from '../utils/token.util'
 import crypto from 'crypto'
 import { mailSender } from '../utils/email.util'
 import OTP from '../models/otp.model'
-
-interface AuthenticatedRequest extends Request {
-  user: {
-    _id: string
-    name: string
-    email: string
-    role: string
-    status: string
-  }
-}
+import { AuthenticatedRequest } from '../routes/auth.route'
 
 /* account registration */
 export const accountRegistration = async (
@@ -292,13 +283,11 @@ export const verifyAccountReset = async (
       description: 'Invalid token',
     })
   } else {
-    res.redirect(
-      `${process.env.ORIGIN_URL}/reset?token=${req.query.token}`,
-    )
+    res.redirect(`${process.env.ORIGIN_URL}/reset?token=${req.query.token}`)
   }
 }
 
-export const confirmAccountPersist = async (
+export const confirmAccountReset = async (
   req: Request,
   res: Response,
 ): Promise<void> => {
@@ -318,18 +307,24 @@ export const confirmAccountPersist = async (
     })
   }
 
-  const user = await User.findOne({ email: req.body.email })
+  const user = await User.findOne({
+    resetToken: req.query.token as string,
+    email: req.body.email,
+  })
   if (!user) {
     res.status(404).json({
       acknowledgement: false,
       message: 'Not Found',
-      description: 'Try with a valid email address',
+      description: 'No user found with this token',
     })
   } else {
     const result = await User.findByIdAndUpdate(
       user?._id,
       {
-        $set: { password: user.encryptedPassword(req.body.password) },
+        $set: {
+          password: user.encryptedPassword(req.body.password),
+          status: 'active',
+        },
         $unset: { resetToken: 1 },
       },
       {

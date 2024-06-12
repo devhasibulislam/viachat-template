@@ -22,10 +22,20 @@ import {
   accountLogin,
   accountReset,
   verifyAccountReset,
-  confirmAccountPersist,
+  confirmAccountReset,
   accountPersist,
 } from '../controllers/auth.controller'
 import verify from '../middleware/verify.middleware'
+
+export interface AuthenticatedRequest extends Request {
+  user?: {
+    _id: string
+    name: string
+    email: string
+    role: string
+    status: string
+  }
+}
 
 /* router level connection */
 const router = express.Router()
@@ -49,12 +59,21 @@ router
     verifyAccountReset(req, res, next),
   )
   .put((req: Request, res: Response, next: NextFunction) =>
-    confirmAccountPersist(req, res, next),
+    confirmAccountReset(req, res, next),
   )
 // login persist
-router.get('/me', verify, (req: Request, res: Response, next: NextFunction) =>
-  accountPersist(req, res, next),
-)
+router.get('/me', verify, (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
+  if (req.user) {
+    accountPersist(req, res, next)
+  } else {
+    // handle the case when the user is not authenticated
+    res.status(401).json({
+      acknowledgement: false,
+      message: 'Unauthorized',
+      description: 'Please, login to continue',
+    })
+  }
+})
 
 /* export user router */
 export default router

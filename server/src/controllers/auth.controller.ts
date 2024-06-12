@@ -14,6 +14,7 @@
  */
 
 /* internal imports */
+import { AuthenticatedRequest } from '../routes/auth.route'
 import * as userService from '../services/auth.service'
 import { Request, Response, NextFunction } from 'express'
 
@@ -76,13 +77,13 @@ export const verifyAccountReset = async (
   }
 }
 
-export const confirmAccountPersist = async (
+export const confirmAccountReset = async (
   req: Request,
   res: Response,
   next: NextFunction,
 ) => {
   try {
-    await userService.confirmAccountPersist(req, res)
+    await userService.confirmAccountReset(req, res)
   } catch (error) {
     next(error)
   } finally {
@@ -92,7 +93,7 @@ export const confirmAccountPersist = async (
 
 /* persist login */
 export const accountPersist = async (
-  req: Request,
+  req: AuthenticatedRequest,
   res: Response,
   next: NextFunction,
 ) => {
