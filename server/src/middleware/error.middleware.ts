@@ -13,19 +13,19 @@
  * Date: 03, December 2023
  */
 
-import { Request, Response, NextFunction } from "express";
+import { Request, Response, NextFunction } from 'express'
 
 function error(
   err: { name: string; message: string },
-  req: Request,
+  _: Request,
   res: Response,
-  next: NextFunction
+  __: NextFunction,
 ) {
   res.send({
     acknowledgement: false,
     message: err.name,
     description: err.message,
-  });
+  })
 }
 
-export default error;
+export default error
