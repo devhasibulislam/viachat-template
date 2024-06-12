@@ -21,6 +21,8 @@ cd viachat-template
 cd client
 yarn install
 
+cd ..
+
 cd server
 yarn install
 ```
@@ -29,13 +31,13 @@ yarn install
 
 > Environment setting that let your project completely done!
 
-### `Client` Environment
+### `Client` `.env.local` Environment
 
 ```bash
 NEXT_PUBLIC_BASE_URL="http://localhost:8080/api"
 ```
 
-### `Server` Environment
+### `Server` `.env` Environment
 
 ```bash
 # Port number
@@ -45,7 +47,7 @@ PORT=8080
 ORIGIN_URL="http://localhost:3000"
 
 # MongoDB Atlas URI
-DB_Name="viachat-template"
+APP_NAME="ViaChat"
 ATLAS_URI="mongodb://localhost:27017/viachat-template"
 
 # JWT secret
@@ -57,42 +59,7 @@ API_KEY="CLOUDINARY_API_KEY"
 API_SECRET="CLOUDINARY_API_SECRET"
 
 # Nodemailer Credentials
-APP_SERVICE="GMAIL_APP_SERVICE"
-APP_EMAIL="GMAIL_APP_EMAIL"
-APP_PASSWORD="GMAIL_APP_PASSWORD"
+MAIL_HOST="smtp.gmail.com"
+MAIL_USER="YOUR_EMAIL_ADDRESS"
+MAIL_PASS="EMAIL_APP_PASSWORD"
 ```
-
-# Installing TypeScript `Server`
-
-```bash
-yarn init
-```
-
-```bash
-yarn add express typescript @types/node @types/express ts-node
-```
-
-```bash
-yarn tsc --init
-```
-
-```bash
-yarn add nodemon concurrently @types/cors -D
-```
-
-```bash
-"scripts": {
-    "build": "rimraf dist && yarn tsc",
-    "prestart": "yarn run build",
-    "start": "node dist/index.js",
-    "preserve": "yarn run build",
-    "serve": "concurrently \"yarn tsc -w\"  \"nodemon dist/index.js\""
-},
-```
-
-> Add a `.js` flag after every internal import ✔️
-
-# Author
-
-- [Hasibul Islam](https://bento.me/devhasibulislam)
-- [Sadia Khanum](https://www.facebook.com/devsadiakhan)
