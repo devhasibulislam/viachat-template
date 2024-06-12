@@ -13,11 +13,24 @@
  * Date: 05, December 2023
  */
 
-
 "use client";
 
 import { NextUIProvider } from "@nextui-org/react";
+import { Toaster } from "react-hot-toast";
 
 export function Providers({ children }: { children: React.ReactNode }) {
-  return <NextUIProvider>{children}</NextUIProvider>;
+  return (
+    <NextUIProvider>
+      {children}
+      <Toaster
+        position="top-right"
+        reverseOrder={true}
+        toastOptions={{
+          style: {
+            border: "1px solid #7852ce",
+          },
+        }}
+      />
+    </NextUIProvider>
+  );
 }
