@@ -18,8 +18,8 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const viaChatApi = createApi({
   reducerPath: "viaChatApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: `${process.env.NEXT_PUBLIC_BASE_URL}/api`,
+    baseUrl: process.env.NEXT_PUBLIC_BASE_URL as string, // Casting to string
   }),
-  tagTypes: ["User", "Chat"],
+  tagTypes: ["User"] as const, // Making sure 'User' is a constant string literal
   endpoints: () => ({}),
 });
