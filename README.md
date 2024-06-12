@@ -11,6 +11,7 @@
 - [x] Inspiration Link: [Click Here](https://themesbrand.com/chatvia-tailwind/layouts/index.html)
 - [x] Client Side Link: [Click Here](https://viachat-template-csr.vercel.app)
 - [x] Server Side Link: [Click Here](https://viachat-template-ssr.vercel.app)
+- [x] `Postman` Collection Link: [Click Here](https://close-quarters-coworking.postman.co/workspace/ProjectX~c2dfb062-e262-42dd-a371-4dc370ab050a/collection/24099405-26a29e36-7117-4fd7-b393-dc45a85a0f39?action=share&creator=24099405)
 
 ## Clone Repository
 
