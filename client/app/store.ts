@@ -13,10 +13,10 @@
  * Date: 04, December 2023
  */
 
+import { configureStore } from "@reduxjs/toolkit";
 import sidebarSlice from "@/features/sidebar/sidebarSlice";
 import userFilterSlice from "@/features/userFilter/userFilterSlice";
 import { viaChatApi } from "@/services/viaChat";
-import { configureStore } from "@reduxjs/toolkit";
 
 export const store = configureStore({
   reducer: {
@@ -24,6 +24,11 @@ export const store = configureStore({
     userFilter: userFilterSlice,
     sidebar: sidebarSlice,
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(),
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(viaChatApi.middleware),
   devTools: process.env.NODE_ENV !== "production",
 });
+
+// Infer the `RootState` and `AppDispatch` types from the store itself
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
