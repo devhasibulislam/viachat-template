@@ -37,20 +37,21 @@ function useToastMessage(
   useEffect(() => {
     if (loading) {
       toast.loading("Please wait for the progress", { id: "react-hot-toast" });
-    } else {
-      toast.dismiss("react-hot-toast");
     }
 
     if (data) {
-      if (data.acknowledgement) {
+      if (data.acknowledgement === true) {
         toast.success(data.description, { id: "react-hot-toast" });
-      } else {
+      }
+      if (data.acknowledgement === false) {
         toast.error(data.description, { id: "react-hot-toast" });
       }
     }
 
-    if (error?.data) {
-      toast.error(error.data.description, { id: "react-hot-toast" });
+    if (error) {
+      if (error.data) {
+        toast.error(error.data.description, { id: "react-hot-toast" });
+      }
     }
   }, [data, error, loading]);
 }
