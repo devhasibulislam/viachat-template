@@ -36,7 +36,7 @@ const Register = (): React.ReactNode => {
   return (
     <section className="w-full h-full flex justify-center items-center">
       <div className="grid grid-cols-12 w-full h-full">
-        <div className="col-span-3 h-full w-full p-6 flex flex-col gap-y-12">
+        <div className="lg:col-span-3 md:col-span-6 col-span-12 h-full w-full p-6 flex flex-col gap-y-12">
           <div className="flex flex-col gap-y-6">
             {/* Logo Section */}
             <Image
@@ -152,7 +152,7 @@ const Register = (): React.ReactNode => {
           </p>
         </div>
         <div
-          className="col-span-9 h-full w-full bg-no-repeat bg-cover p-12"
+          className="lg:col-span-9 md:col-span-6 md:block hidden h-full w-full bg-no-repeat bg-cover p-12"
           style={{
             backgroundImage: `url("/assets/models/signup.jpg")`,
           }}

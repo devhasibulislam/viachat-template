@@ -35,7 +35,7 @@ const Login = (): React.ReactNode => {
   return (
     <section className="w-full h-full flex justify-center items-center">
       <div className="grid grid-cols-12 w-full h-full">
-        <div className="col-span-3 h-full w-full p-6 flex flex-col gap-y-12">
+        <div className="lg:col-span-3 md:col-span-6 col-span-12 h-full w-full p-6 flex flex-col gap-y-12">
           <div className="flex flex-col gap-y-6">
             {/* Logo Section */}
             <Image
@@ -134,13 +134,13 @@ const Login = (): React.ReactNode => {
           </p>
         </div>
         <div
-          className="col-span-9 h-full w-full bg-no-repeat bg-cover p-12"
+          className="lg:col-span-9 md:col-span-6 md:block hidden h-full w-full bg-no-repeat bg-cover p-12"
           style={{
             backgroundImage: `url("/assets/models/signin.jpg")`,
           }}
         >
           <div className="h-full w-full flex flex-col gap-y-4 border rounded-md p-8">
-            <h1 className="text-5xl font-bold">
+            <h1 className="text-5xl font-bold lg:block hidden">
               ViaChat <br /> is come closer <br /> near to you soon!
             </h1>
             <p>
