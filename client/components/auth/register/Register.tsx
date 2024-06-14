@@ -15,12 +15,16 @@
 
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { useForm, Controller, ControllerRenderProps } from "react-hook-form";
 import { Button, Input, Link } from "@nextui-org/react";
 import Image from "next/image";
+import { useRegisterMutation } from "@/services/auth/authApi";
+import useToastMessage from "@/hooks/useToastMessage";
+import { MdCamera } from "react-icons/md";
 
 type FormValues = {
+  avatar: File | null;
   name: string;
   email: string;
   password: string;
@@ -28,8 +32,13 @@ type FormValues = {
 
 const Register = (): React.ReactNode => {
   const { handleSubmit, control } = useForm<FormValues>();
+  const [register, { isLoading, data, error }] = useRegisterMutation();
+  const [avatar, setAvatar] = useState<File | null>(null);
+
+  useToastMessage(data, error, isLoading);
 
   const handleRegister = (data: FormValues) => {
+    data.avatar = avatar; // Add avatar to form data
     console.log(data);
   };
 
@@ -58,6 +67,46 @@ const Register = (): React.ReactNode => {
             onSubmit={handleSubmit(handleRegister)}
             className="flex flex-col gap-y-4 text-black"
           >
+            {/* avatar */}
+            <label htmlFor="avatar" className="">
+              <Controller
+                control={control}
+                name="avatar"
+                rules={{ required: true }}
+                render={({
+                  field,
+                }: {
+                  field: ControllerRenderProps<FormValues, "avatar">;
+                }) => (
+                  <Button
+                    variant="bordered"
+                    endContent={<MdCamera className="h-5 w-5" />}
+                    className="relative"
+                    type="button"
+                    radius="sm"
+                    size="md"
+                  >
+                    Choose Avatar
+                    <input
+                      type="file"
+                      name="avatar"
+                      accept="image/png, image/jpg, image/jpeg"
+                      className="opacity-0 absolute top-0 left-0 h-full w-full cursor-pointer"
+                      onChange={(e) => {
+                        if (e.target.files && e.target.files[0]) {
+                          setAvatar(e.target.files[0]);
+                          field.onChange(e.target.files[0]);
+                        }
+                      }}
+                      onBlur={field.onBlur}
+                      ref={field.ref}
+                      required
+                    />
+                  </Button>
+                )}
+              />
+            </label>
+
             {/* name */}
             <label htmlFor="name" className="">
               <Controller

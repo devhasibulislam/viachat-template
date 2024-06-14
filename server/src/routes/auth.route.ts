@@ -26,6 +26,7 @@ import {
   accountPersist,
 } from '../controllers/auth.controller'
 import verify from '../middleware/verify.middleware'
+import upload from '../middleware/upload.middleware'
 
 export interface AuthenticatedRequest extends Request {
   user?: {
@@ -42,8 +43,11 @@ const router = express.Router()
 
 /* router methods integration */
 // account registration
-router.post('/register', (req: Request, res: Response, next: NextFunction) =>
-  accountRegistration(req, res, next),
+router.post(
+  '/register',
+  upload.single('avatar'),
+  (req: Request, res: Response, next: NextFunction) =>
+    accountRegistration(req, res, next),
 )
 // account login
 router.post('/login', (req: Request, res: Response, next: NextFunction) =>
@@ -62,18 +66,22 @@ router
     confirmAccountReset(req, res, next),
   )
 // login persist
-router.get('/me', verify, (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
-  if (req.user) {
-    accountPersist(req, res, next)
-  } else {
-    // handle the case when the user is not authenticated
-    res.status(401).json({
-      acknowledgement: false,
-      message: 'Unauthorized',
-      description: 'Please, login to continue',
-    })
-  }
-})
+router.get(
+  '/me',
+  verify,
+  (req: AuthenticatedRequest, res: Response, next: NextFunction) => {
+    if (req.user) {
+      accountPersist(req, res, next)
+    } else {
+      // handle the case when the user is not authenticated
+      res.status(401).json({
+        acknowledgement: false,
+        message: 'Unauthorized',
+        description: 'Please, login to continue',
+      })
+    }
+  },
+)
 
 /* export user router */
 export default router
