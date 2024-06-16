@@ -7,6 +7,10 @@
   "author": "Hasibul Islam",
   "license": "MIT",
   "private": true,
+  "engines": {
+    "node": ">=16.x",
+    "npm": ">=8.x"
+  },
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js"
