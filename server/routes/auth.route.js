@@ -4,6 +4,7 @@ const express = require("express");
 /* internal import */
 const userController = require("../controllers/auth.controller");
 const verify = require("../middleware/verify.middleware");
+const upload = require("../middleware/upload.middleware");
 
 /* router level connection */
 const router = express.Router();

@@ -6,6 +6,7 @@ require("dotenv").config();
 /* internal import */
 const error = require("./middleware/error.middleware");
 const authRouter = require("./routes/auth.route");
+const otpRouter = require("./routes/otp.route");
 
 /* application level connection */
 const app = express();
@@ -23,7 +24,7 @@ app.use(express.json());
 
 /* router level connections */
 app.use("/api/auth", authRouter);
-app.use("/api/otp", router);
+app.use("/api/otp", otpRouter);
 
 /* global error handler */
 app.use(error);
