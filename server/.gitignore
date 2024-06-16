@@ -1,0 +1,9 @@
+# dependencies
+node_modules
+
+# local secret files
+.env
+
+# lock files
+yarn.lock
+package-lock.json
