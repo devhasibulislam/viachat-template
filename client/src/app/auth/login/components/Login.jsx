@@ -116,11 +116,31 @@ const Login = () => {
               </p>
 
               <p className="mt-auto text-">
-                <span className="flex gap-x-2">
-                  Email: <b className="font-bold">devhasibulislam@gmail.com</b>
+                <span className="flex gap-x-1">
+                  Email:{" "}
+                  <b
+                    className="font-bold"
+                    onClick={() => {
+                      navigator.clipboard.writeText(
+                        "devhasibulislam@gmail.com"
+                      );
+                    }}
+                  >
+                    devhasibulislam@gmail.com
+                  </b>
                 </span>
-                <span className="flex gap-x-2">
-                  Password: <b className="font-bold">Hasib@123</b>
+                <span className="flex gap-x-1">
+                  Password:{" "}
+                  <b
+                    className="font-bold"
+                    onClick={() => {
+                      navigator.clipboard.writeText(
+                        "devhasibulislam@gmail.com"
+                      );
+                    }}
+                  >
+                    Hasib@123
+                  </b>
                 </span>
               </p>
             </div>
