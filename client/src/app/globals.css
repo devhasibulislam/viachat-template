@@ -4,6 +4,12 @@
 
 [type="text"],
 [type="email"],
-[type="password"] {
+[type="password"],
+[type="number"] {
   @apply form-input rounded-neutral focus:outline-none focus:ring-0 focus:border placeholder:text-neutral/30 text-black border;
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
 }
