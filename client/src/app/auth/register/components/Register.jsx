@@ -5,7 +5,7 @@ import useToastMessage from "@/hooks/useToastMessage";
 import Auth from "@/layouts/Auth";
 import { useRegisterMutation } from "@/services/auth/authApi";
 import Link from "next/link";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { MdCamera } from "react-icons/md";
 import Logo from "@/components/logo/Logo";
@@ -17,6 +17,12 @@ const Register = () => {
   const [register, { isLoading, data, error }] = useRegisterMutation();
 
   useToastMessage(isLoading, data, error);
+
+  useEffect(() => {
+    if (data && data.acknowledgement === true) {
+      if (typeof window !== "undefined") window.location.href = "/auth/register/otp";
+    }
+  }, [data]);
 
   const handleAvatarPreview = (e) => {
     const file = e.target.files[0];

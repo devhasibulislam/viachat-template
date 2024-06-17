@@ -25,9 +25,7 @@ const OTP = () => {
               {/* Logo Section */}
               <Logo />
 
-              <h2 className="text-black text-4xl font-bold">
-                Reset Your Password
-              </h2>
+              <h2 className="text-black text-4xl font-bold">Verify Your OTP</h2>
             </div>
 
             <form
@@ -35,22 +33,27 @@ const OTP = () => {
               className="flex flex-col gap-y-4 text-black"
             >
               {/* otp */}
-              <label htmlFor="otp" className="w-full">
-                <Controller
-                  control={control}
-                  name="otp"
-                  rules={{ required: true }}
-                  render={({ field }) => (
-                    <input
-                      {...field}
-                      type="number"
-                      autoComplete="off"
-                      placeholder="Enter your otp*"
-                      className="w-full rounded-neutral"
-                    />
-                  )}
-                />
-              </label>
+              <div className="flex flex-col gap-y-1">
+                <label htmlFor="otp" className="w-full">
+                  <Controller
+                    control={control}
+                    name="otp"
+                    rules={{ required: true }}
+                    render={({ field }) => (
+                      <input
+                        {...field}
+                        type="number"
+                        autoComplete="off"
+                        placeholder="Enter your otp*"
+                        className="w-full rounded-neutral"
+                      />
+                    )}
+                  />
+                </label>
+                <p className="text-sm text-left text-black">
+                  Enter the OTP that you see on your email
+                </p>
+              </div>
 
               {/* reset */}
               <Button

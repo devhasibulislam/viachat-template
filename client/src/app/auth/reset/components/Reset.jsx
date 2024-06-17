@@ -40,22 +40,27 @@ const Reset = () => {
               className="flex flex-col gap-y-4 text-black"
             >
               {/* email */}
-              <label htmlFor="email" className="w-full">
-                <Controller
-                  control={control}
-                  name="email"
-                  rules={{ required: true }}
-                  render={({ field }) => (
-                    <input
-                      {...field}
-                      type="email"
-                      autoComplete="off"
-                      placeholder="Enter your email*"
-                      className="w-full rounded-neutral"
-                    />
-                  )}
-                />
-              </label>
+              <div className="flex flex-col gap-y-1">
+                <label htmlFor="email" className="w-full">
+                  <Controller
+                    control={control}
+                    name="email"
+                    rules={{ required: true }}
+                    render={({ field }) => (
+                      <input
+                        {...field}
+                        type="email"
+                        autoComplete="off"
+                        placeholder="Enter your email*"
+                        className="w-full rounded-neutral"
+                      />
+                    )}
+                  />
+                </label>
+                <p className="text-sm text-left text-black">
+                  You receive a password reset link in your email
+                </p>
+              </div>
 
               {/* reset */}
               <Button

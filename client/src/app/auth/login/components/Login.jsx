@@ -115,9 +115,13 @@ const Login = () => {
                 product tutorials to elevate your skills.
               </p>
 
-              <p className="mt-auto">
-                Enjoy a 50% discount with code{" "}
-                <b className="font-bold">WEB50.</b>
+              <p className="mt-auto text-">
+                <span className="flex gap-x-2">
+                  Email: <b className="font-bold">devhasibulislam@gmail.com</b>
+                </span>
+                <span className="flex gap-x-2">
+                  Password: <b className="font-bold">Hasib@123</b>
+                </span>
               </p>
             </div>
           </div>
