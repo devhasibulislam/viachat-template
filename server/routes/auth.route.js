@@ -6,7 +6,6 @@ var bodyParser = require("body-parser");
 const userController = require("../controllers/auth.controller");
 const verify = require("../middleware/verify.middleware");
 const upload = require("../middleware/upload.middleware");
-const { checkPayload, checkUser } = require("../middleware/check.middleware");
 
 /* router level connection */
 const router = express.Router();
@@ -18,8 +17,6 @@ router.use(bodyParser.urlencoded({ extended: true }));
 // account registration
 router.post(
   "/register",
-  checkPayload,
-  checkUser,
   upload.single("avatar"),
   userController.accountRegistration
 );

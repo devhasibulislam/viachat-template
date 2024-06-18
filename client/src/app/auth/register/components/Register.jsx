@@ -79,7 +79,7 @@ const Register = () => {
                           <img
                             src={avatarPreview}
                             alt={avatarPreview}
-                            srcset={avatarPreview}
+                            srcSet={avatarPreview}
                             className="h-full w-full max-w-full object-cover object-top rounded-neutral"
                           />
                         </>
