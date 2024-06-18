@@ -1,5 +1,6 @@
 /* external imports */
 const express = require("express");
+const bodyParser = require('body-parser');
 const cors = require("cors");
 require("dotenv").config();
 
@@ -20,7 +21,8 @@ app.use(
     optionsSuccessStatus: 204,
   })
 );
-app.use(express.json());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 /* router level connections */
 app.use("/api/auth", authRouter);

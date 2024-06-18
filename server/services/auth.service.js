@@ -9,6 +9,8 @@ const mailSender = require("../utils/email.util");
 
 /* account registration */
 exports.accountRegistration = async (req, res) => {
+  console.log(req.body, "REQUEST_BODY_02");
+
   if (!req.body) {
     res.status(400).json({
       acknowledgement: false,

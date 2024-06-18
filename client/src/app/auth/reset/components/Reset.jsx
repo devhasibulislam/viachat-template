@@ -69,7 +69,8 @@ const Reset = () => {
               {/* reset */}
               <Button
                 type="submit"
-                className="w-fit mt-4 text-white text-primary"
+                disabled={isLoading}
+                className="w-fit mt-4 text-white"
               >
                 Reset
               </Button>
