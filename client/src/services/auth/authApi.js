@@ -29,7 +29,7 @@ const authApi = viachatApi.injectEndpoints({
       }),
     }),
 
-    verify: build.mutation({
+    verifyReset: build.mutation({
       query: ({ token, password }) => ({
         url: `/auth/reset?token=${token}`,
         method: "PUT",
@@ -55,6 +55,6 @@ export const {
   useLoginMutation,
   useRegisterMutation,
   useResetMutation,
-  useVerifyMutation,
+  useVerifyResetMutation,
   usePersistQuery,
 } = authApi;

@@ -7,11 +7,11 @@ import React, { useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
 import Auth from "@/layouts/Auth";
 import Logo from "@/components/logo/Logo";
-import { useVerifyMutation } from "@/services/otp/otpApi";
+import { useVerifyOTPMutation } from "@/services/otp/otpApi";
 
 const OTP = () => {
   const { handleSubmit, control } = useForm();
-  const [verify, { isLoading, data, error }] = useVerifyMutation();
+  const [verify, { isLoading, data, error }] = useVerifyOTPMutation();
 
   useToastMessage(isLoading, data, error);
 

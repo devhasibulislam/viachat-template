@@ -3,7 +3,7 @@
 import Button from "@/components/auth/Button";
 import useToastMessage from "@/hooks/useToastMessage";
 import Link from "next/link";
-import { useVerifyMutation } from "@/services/auth/authApi";
+import { useVerifyResetMutation } from "@/services/auth/authApi";
 import React, { useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
 import Auth from "@/layouts/Auth";
@@ -12,7 +12,7 @@ import { useSearchParams } from "next/navigation";
 
 const Password = () => {
   const { handleSubmit, control } = useForm();
-  const [verify, { isLoading, data, error }] = useVerifyMutation();
+  const [verify, { isLoading, data, error }] = useVerifyResetMutation();
   const searchParams = useSearchParams();
   const token = searchParams.get("token");
 

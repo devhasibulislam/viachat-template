@@ -2,7 +2,7 @@ const { viachatApi } = require("../viachat");
 
 const otpApi = viachatApi.injectEndpoints({
   endpoints: (build) => ({
-    verify: build.mutation({
+    verifyOTP: build.mutation({
       query: ({ otp }) => ({
         url: "/otp/verify",
         method: "PUT",
@@ -16,4 +16,4 @@ const otpApi = viachatApi.injectEndpoints({
   }),
 });
 
-export const { useVerifyMutation } = otpApi;
+export const { useVerifyOTPMutation } = otpApi;
