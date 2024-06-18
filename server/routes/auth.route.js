@@ -23,7 +23,7 @@ router
   .route("/reset")
   .post(userController.accountReset)
   .get(userController.verifyAccountReset)
-  .patch(userController.confirmAccountPersist);
+  .put(userController.confirmAccountPersist);
 // login persist
 router.get("/me", verify, userController.accountPersist);
 
