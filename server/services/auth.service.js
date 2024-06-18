@@ -127,7 +127,7 @@ exports.accountReset = async (req, res) => {
         description: "Try with a valid email address",
       });
     } else {
-      const resetToken = crypto.randomBytes(16).toString("hex");
+      const resetToken = crypto.randomUUID();
       user.resetToken = resetToken;
 
       const mailResponse = await mailSender(
@@ -234,20 +234,12 @@ exports.verifyAccountReset = async (req, res) => {
     });
   } else {
     res.redirect(
-      `${process.env.ORIGIN_URL}/forgot-password?token=${req.query.token}`
+      `${process.env.ORIGIN_URL}/auth/reset/password?token=${req.query.token}`
     );
   }
 };
 
 exports.confirmAccountPersist = async (req, res) => {
-  if (!req.body.email || !req.body.password) {
-    res.status(400).json({
-      acknowledgement: false,
-      message: "Bad Request",
-      description: "Email and password are required",
-    });
-  }
-
   if (!req.query.token) {
     res.status(400).json({
       acknowledgement: false,
@@ -256,12 +248,20 @@ exports.confirmAccountPersist = async (req, res) => {
     });
   }
 
-  const user = await User.findOne({ email: req.body.email });
+  if (!req.body.password) {
+    res.status(400).json({
+      acknowledgement: false,
+      message: "Bad Request",
+      description: "Password is required",
+    });
+  }
+
+  const user = await User.findOne({ resetToken: req.query.token });
   if (!user) {
     res.status(404).json({
       acknowledgement: false,
       message: "Not Found",
-      description: "Try with a valid email address",
+      description: "Try with a valid reset token",
     });
   } else {
     const result = await User.findByIdAndUpdate(

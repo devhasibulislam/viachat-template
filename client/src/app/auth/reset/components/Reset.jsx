@@ -4,7 +4,7 @@ import Button from "@/components/auth/Button";
 import useToastMessage from "@/hooks/useToastMessage";
 import Link from "next/link";
 import { useResetMutation } from "@/services/auth/authApi";
-import React from "react";
+import React, { useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
 import Auth from "@/layouts/Auth";
 import Logo from "@/components/logo/Logo";
@@ -15,10 +15,14 @@ const Reset = () => {
 
   useToastMessage(isLoading, data, error);
 
-  const handleReset = (data) => {
-    console.log(data);
+  useEffect(() => {
+    if (data && data.acknowledgement === true) {
+      if (typeof window !== "undefined") window.location.href = "/auth/login";
+    }
+  }, [data]);
 
-    // reset(data);
+  const handleReset = (data) => {
+    reset(data);
   };
 
   return (

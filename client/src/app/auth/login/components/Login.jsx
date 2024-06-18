@@ -8,6 +8,7 @@ import React, { useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
 import Auth from "@/layouts/Auth";
 import Logo from "@/components/logo/Logo";
+import getCookie from "@/libs/getCookie";
 
 const Login = () => {
   const { handleSubmit, control } = useForm();
@@ -29,6 +30,10 @@ const Login = () => {
         const expires = "expires=" + bstTime.toUTCString();
         document.cookie = `accessToken=${data.accessToken}; ${expires}; path=/`;
       }
+    }
+
+    if (getCookie("accessToken")) {
+      if (typeof window !== "undefined") window.location.href = "/";
     }
   }, [data]);
 

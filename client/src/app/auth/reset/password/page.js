@@ -1,10 +1,12 @@
-import React from "react";
+import React, { Suspense } from "react";
 import Password from "./components/Password";
 
 const Page = () => {
   return (
     <>
-      <Password />
+      <Suspense fallback={<>Loading...</>}>
+        <Password />
+      </Suspense>
     </>
   );
 };

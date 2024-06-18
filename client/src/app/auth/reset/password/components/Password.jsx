@@ -3,22 +3,32 @@
 import Button from "@/components/auth/Button";
 import useToastMessage from "@/hooks/useToastMessage";
 import Link from "next/link";
-import { useResetMutation } from "@/services/auth/authApi";
-import React from "react";
+import { useVerifyMutation } from "@/services/auth/authApi";
+import React, { useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
 import Auth from "@/layouts/Auth";
 import Logo from "@/components/logo/Logo";
+import { useSearchParams } from "next/navigation";
 
 const Password = () => {
   const { handleSubmit, control } = useForm();
-  const [reset, { isLoading, data, error }] = useResetMutation();
+  const [verify, { isLoading, data, error }] = useVerifyMutation();
+  const searchParams = useSearchParams();
+  const token = searchParams.get("token");
 
   useToastMessage(isLoading, data, error);
 
-  const handleNewPassword = (data) => {
-    console.log(data);
+  useEffect(() => {
+    if (data && data.acknowledgement === true) {
+      if (typeof window !== "undefined") window.location.href = "/auth/login";
+    }
+  }, [data]);
 
-    // reset(data);
+  const handleNewPassword = (data) => {
+    verify({
+      token: token,
+      password: data.password,
+    });
   };
 
   return (
@@ -39,24 +49,6 @@ const Password = () => {
               onSubmit={handleSubmit(handleNewPassword)}
               className="flex flex-col gap-y-4 text-black"
             >
-              {/* email */}
-              <label htmlFor="email" className="w-full">
-                <Controller
-                  control={control}
-                  name="email"
-                  rules={{ required: true }}
-                  render={({ field }) => (
-                    <input
-                      {...field}
-                      type="email"
-                      autoComplete="off"
-                      placeholder="Enter your email*"
-                      className="w-full rounded-neutral"
-                    />
-                  )}
-                />
-              </label>
-
               {/* password */}
               <label htmlFor="password" className="w-full">
                 <Controller
