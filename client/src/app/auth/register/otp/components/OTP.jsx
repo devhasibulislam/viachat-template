@@ -3,17 +3,27 @@
 import Button from "@/components/auth/Button";
 import useToastMessage from "@/hooks/useToastMessage";
 import Link from "next/link";
-import { useResetMutation } from "@/services/auth/authApi";
-import React from "react";
+import React, { useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
 import Auth from "@/layouts/Auth";
 import Logo from "@/components/logo/Logo";
+import { useVerifyMutation } from "@/services/otp/otpApi";
 
 const OTP = () => {
   const { handleSubmit, control } = useForm();
+  const [verify, { isLoading, data, error }] = useVerifyMutation();
+
+  useToastMessage(isLoading, data, error);
+
+  useEffect(() => {
+    if (data && data.acknowledgement === true) {
+      if (typeof window !== "undefined")
+        window.location.href = "/auth/login";
+    }
+  }, [data]);
 
   function handleOtp(data) {
-    console.log(data);
+    verify(data);
   }
 
   return (
@@ -38,7 +48,7 @@ const OTP = () => {
                   <Controller
                     control={control}
                     name="otp"
-                    rules={{ required: true }}
+                    rules={{ required: true, minLength: 5, maxLength: 5 }}
                     render={({ field }) => (
                       <input
                         {...field}

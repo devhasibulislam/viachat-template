@@ -58,7 +58,7 @@ exports.sendOTP = async (req, res) => {
 };
 
 exports.verifyOTP = async (req, res) => {
-  const otp = req.params.otp;
+  const otp = req.body.otp;
 
   if (!otp) {
     res.status(400).json({
@@ -69,7 +69,6 @@ exports.verifyOTP = async (req, res) => {
   }
 
   const result = await OTP.findOne({ otp });
-  const user = await User.findOne({ email: result.email });
 
   if (!result) {
     res.status(404).json({
@@ -78,6 +77,8 @@ exports.verifyOTP = async (req, res) => {
       description: "Please, provide a valid OTP",
     });
   }
+
+  const user = await User.findOne({ email: result.email });
 
   if (result.status === "unverified") {
     result.status = "verified";

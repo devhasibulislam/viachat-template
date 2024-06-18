@@ -9,10 +9,10 @@ const router = express.Router();
 
 /* router methods integration */
 // send otp
-router.post("/send-otp", otpController.sendOTP);
+router.post("/send", otpController.sendOTP);
 
 // verify otp
-router.get("/verify-otp/:otp", otpController.verifyOTP);
+router.put("/verify", otpController.verifyOTP);
 
 /* export user router */
 module.exports = router;

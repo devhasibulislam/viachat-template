@@ -5,6 +5,6 @@ export const viachatApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: `${process.env.NEXT_PUBLIC_BASE_URL}`,
   }),
-  tagTypes: ["User"],
+  tagTypes: ["User", "OTP"],
   endpoints: () => ({}),
 });
