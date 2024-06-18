@@ -1,6 +1,5 @@
 /* external imports */
 const jwt = require("jsonwebtoken");
-const { promisify } = require("util");
 
 async function verify(req, res, next) {
   try {
@@ -17,21 +16,18 @@ async function verify(req, res, next) {
     }
 
     // fetching token set the user on request
-    const decoded = await promisify(jwt.verify)(
-      token,
-      process.env.TOKEN_SECRET
-    );
-
-    if (!decoded) {
-      return res.status(401).json({
-        acknowledgement: false,
-        message: "Unauthorized",
-        description: "Please, login to continue",
-      });
-    }
-
-    req.user = decoded;
-    next();
+    jwt.verify(token, process.env.TOKEN_SECRET, (err, decoded) => {
+      if (err) {
+        return res.status(401).json({
+          acknowledgement: false,
+          message: "Unauthorized",
+          description: "Please, login to continue",
+        });
+      } else {
+        req.user = decoded;
+        next();
+      }
+    });
   } catch (error) {
     next(error);
   }

@@ -82,7 +82,6 @@ const Login = () => {
                     render={({ field }) => (
                       <input
                         {...field}
-                        isRequired
                         type="password"
                         autoComplete="off"
                         placeholder="Enter your name*"
