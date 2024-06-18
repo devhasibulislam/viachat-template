@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { toast } from "react-hot-toast";
 
-function useToastMessage({ loading, data, error }) {
+function useToastMessage(loading, data, error) {
   useEffect(() => {
     if (loading) {
       toast.loading("Please wait, the request is loading", {
