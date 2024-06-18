@@ -4,16 +4,16 @@ const bcrypt = require("bcryptjs");
 const userSchema = new mongoose.Schema(
   {
     // user information
-    // avatar: {
-    //   url: {
-    //     type: String,
-    //     required: [true, 'Please, provide a valid avatar URL'],
-    //   },
-    //   public_id: {
-    //     type: String,
-    //     required: [true, 'Please, provide the avatar public id'],
-    //   },
-    // },
+    avatar: {
+      url: {
+        type: String,
+        required: [true, "Please, provide a valid avatar URL"],
+      },
+      id: {
+        type: String,
+        required: [true, "Please, provide the avatar public id"],
+      },
+    },
     name: {
       type: String,
       required: [true, "Please, provide your full name"],

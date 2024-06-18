@@ -12,7 +12,6 @@ import Logo from "@/components/logo/Logo";
 
 const Register = () => {
   const { handleSubmit, control } = useForm();
-  const [avatar, setAvatar] = useState(File | null);
   const [avatarPreview, setAvatarPreview] = useState(File | null);
   const [register, { isLoading, data, error }] = useRegisterMutation();
 
@@ -20,13 +19,13 @@ const Register = () => {
 
   useEffect(() => {
     if (data && data.acknowledgement === true) {
-      if (typeof window !== "undefined") window.location.href = "/auth/register/otp";
+      if (typeof window !== "undefined")
+        window.location.href = "/auth/register/otp";
     }
   }, [data]);
 
   const handleAvatarPreview = (e) => {
     const file = e.target.files[0];
-    setAvatar(file);
 
     if (!avatarPreview) {
       if (file) {
@@ -41,10 +40,12 @@ const Register = () => {
   };
 
   const handleRegister = (data) => {
-    data.avatar = avatar;
-    console.log(data);
+    const formData = new FormData();
+    for (const [key, value] of Object.entries(data)) {
+      formData.append(key, value);
+    }
 
-    // register(data);
+    register(formData);
   };
 
   return (
@@ -73,7 +74,7 @@ const Register = () => {
                   rules={{ required: true }}
                   render={({ field }) => (
                     <div className="border border-black rounded-neutral p-2 w-[134px] h-[88px] relative">
-                      {avatar && avatarPreview ? (
+                      {avatarPreview ? (
                         <>
                           <img
                             src={avatarPreview}
@@ -167,7 +168,8 @@ const Register = () => {
               {/* register */}
               <Button
                 type="submit"
-                className="w-fit mt-4 text-white text-primary"
+                disabled={isLoading}
+                className="w-fit mt-4 text-white"
               >
                 Register
               </Button>

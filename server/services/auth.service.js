@@ -25,7 +25,13 @@ exports.accountRegistration = async (req, res) => {
         description: "Email already exists",
       });
     } else {
-      const result = new User(req.body);
+      const result = new User({
+        ...req.body,
+        avatar: {
+          url: req.file.path,
+          id: req.file.filename,
+        },
+      });
 
       if (!result) {
         res.status(400).json({
