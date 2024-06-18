@@ -1,3 +1,4 @@
+import getCookie from "@/libs/getCookie";
 const { viachatApi } = require("../viachat");
 
 const authApi = viachatApi.injectEndpoints({
@@ -32,6 +33,9 @@ const authApi = viachatApi.injectEndpoints({
       query: () => ({
         url: "/auth/me",
         method: "GET",
+        headers: {
+          Authorization: `Bearer ${getCookie("accessToken")}`,
+        },
       }),
 
       providesTags: ["User"],

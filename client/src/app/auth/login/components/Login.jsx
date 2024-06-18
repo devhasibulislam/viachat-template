@@ -4,7 +4,7 @@ import Button from "@/components/auth/Button";
 import useToastMessage from "@/hooks/useToastMessage";
 import Link from "next/link";
 import { useLoginMutation } from "@/services/auth/authApi";
-import React from "react";
+import React, { useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
 import Auth from "@/layouts/Auth";
 import Logo from "@/components/logo/Logo";
@@ -15,10 +15,25 @@ const Login = () => {
 
   useToastMessage(isLoading, data, error);
 
-  const handleLogin = (data) => {
-    console.log(data);
+  useEffect(() => {
+    if (data && data.acknowledgement === true) {
+      console.log(data.accessToken);
 
-    // login(data);
+      if (typeof window !== "undefined") {
+        const date = new Date();
+        // Adjust the date to BST (UTC+6)
+        const bstOffset = 6 * 60 * 60 * 1000; // 6 hours in milliseconds
+        const localTime = date.getTime();
+        const bstTime = new Date(localTime + bstOffset);
+        bstTime.setTime(bstTime.getTime() + 1 * 60 * 60 * 1000); // Add 1 hour
+        const expires = "expires=" + bstTime.toUTCString();
+        document.cookie = `accessToken=${data.accessToken}; ${expires}; path=/`;
+      }
+    }
+  }, [data]);
+
+  const handleLogin = (data) => {
+    login(data);
   };
 
   return (
