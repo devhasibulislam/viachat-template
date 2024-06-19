@@ -1,11 +1,14 @@
 /* internal imports */
 const userService = require("../services/auth.service");
+const remove = require("../utils/remove.util");
 
 /* account registration */
 exports.accountRegistration = async (req, res, next) => {
   try {
     await userService.accountRegistration(req, res);
   } catch (error) {
+    await remove(req.file.filename);
+    
     next(error);
   } finally {
     console.log(`Route: ${req.url} || Method: ${req.method}`);
