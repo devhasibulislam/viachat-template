@@ -37,6 +37,8 @@ exports.accountRegistration = async (req, res) => {
       });
 
       if (!result) {
+        await remove(req.file.filename);
+        
         res.status(400).json({
           acknowledgement: false,
           message: "Bad Request",
