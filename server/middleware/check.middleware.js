@@ -2,8 +2,6 @@
 const User = require("../models/user.model");
 
 const checkPayload = (req, res, next) => {
-    console.log(req.body, "REQUEST_BODY_01");
-
   if (!req.body) {
     return res.status(400).json({
       acknowledgement: false,

@@ -1,6 +1,5 @@
 /* external import */
 const express = require("express");
-var bodyParser = require("body-parser");
 
 /* internal import */
 const userController = require("../controllers/auth.controller");
@@ -9,9 +8,6 @@ const upload = require("../middleware/upload.middleware");
 
 /* router level connection */
 const router = express.Router();
-
-router.use(bodyParser.json());
-router.use(bodyParser.urlencoded({ extended: true }));
 
 /* router methods integration */
 // account registration

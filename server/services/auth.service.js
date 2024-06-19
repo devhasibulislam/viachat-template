@@ -4,12 +4,50 @@ const crypto = require("crypto");
 /* internal imports */
 const User = require("../models/user.model");
 const token = require("../utils/token.util");
+const { sendOTP } = require("./otp.service");
 const mailSender = require("../utils/email.util");
-const agenda = require("../config/agenda");
+const remove = require("../utils/remove.util");
 
 /* account registration */
 exports.accountRegistration = async (req, res) => {
-  agenda.now("register-user", { req, res });
+  if (!req.body) {
+    res.status(400).json({
+      acknowledgement: false,
+      message: "Bad Request",
+      description: "Payload is required",
+    });
+  } else {
+    const user = await User.findOne({ email: req.body.email });
+
+    if (user) {
+      await remove(req.file.filename);
+
+      res.status(409).json({
+        acknowledgement: false,
+        message: "Conflict",
+        description: "Email already exists",
+      });
+    } else {
+      const result = new User({
+        ...req.body,
+        avatar: {
+          url: req.file.path,
+          id: req.file.filename,
+        },
+      });
+
+      if (!result) {
+        res.status(400).json({
+          acknowledgement: false,
+          message: "Bad Request",
+          description: "Check given info to recreate user",
+        });
+      } else {
+        await result.save();
+        await sendOTP(req, res);
+      }
+    }
+  }
 };
 
 /* account login */

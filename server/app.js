@@ -1,6 +1,5 @@
 /* external imports */
 const express = require("express");
-const bodyParser = require('body-parser');
 const cors = require("cors");
 require("dotenv").config();
 
@@ -13,16 +12,8 @@ const otpRouter = require("./routes/otp.route");
 const app = express();
 
 /* middleware connections */
-app.use(
-  cors({
-    origin: process.env.ORIGIN_URL,
-    methods: "GET, POST, PUT, DELETE",
-    preflightContinue: false,
-    optionsSuccessStatus: 204,
-  })
-);
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors());
+app.use(express.json());
 
 /* router level connections */
 app.use("/api/auth", authRouter);
