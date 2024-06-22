@@ -6,7 +6,11 @@ exports.sendOTP = async (req, res, next) => {
   } catch (error) {
     next(error);
   } finally {
-    console.log(`Route: ${req.url} || Method: ${req.method}`);
+    console.log({
+      status: res.statusCode,
+      method: req.method,
+      route: `${req.protocol}://${req.get("host")}${req.originalUrl}`,
+    });
   }
 };
 
@@ -16,6 +20,10 @@ exports.verifyOTP = async (req, res, next) => {
   } catch (error) {
     next(error);
   } finally {
-    console.log(`Route: ${req.url} || Method: ${req.method}`);
+    console.log({
+      status: res.statusCode,
+      method: req.method,
+      route: `${req.protocol}://${req.get("host")}${req.originalUrl}`,
+    });
   }
 };

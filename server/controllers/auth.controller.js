@@ -8,10 +8,14 @@ exports.accountRegistration = async (req, res, next) => {
     await userService.accountRegistration(req, res);
   } catch (error) {
     await remove(req.file.filename);
-    
+
     next(error);
   } finally {
-    console.log(`Route: ${req.url} || Method: ${req.method}`);
+    console.log({
+      status: res.statusCode,
+      method: req.method,
+      route: `${req.protocol}://${req.get("host")}${req.originalUrl}`,
+    });
   }
 };
 
@@ -22,7 +26,11 @@ exports.accountLogin = async (req, res, next) => {
   } catch (error) {
     next(error);
   } finally {
-    console.log(`Route: ${req.url} || Method: ${req.method}`);
+    console.log({
+      status: res.statusCode,
+      method: req.method,
+      route: `${req.protocol}://${req.get("host")}${req.originalUrl}`,
+    });
   }
 };
 
@@ -33,7 +41,11 @@ exports.accountReset = async (req, res, next) => {
   } catch (error) {
     next(error);
   } finally {
-    console.log(`Route: ${req.url} || Method: ${req.method}`);
+    console.log({
+      status: res.statusCode,
+      method: req.method,
+      route: `${req.protocol}://${req.get("host")}${req.originalUrl}`,
+    });
   }
 };
 
@@ -43,7 +55,11 @@ exports.verifyAccountReset = async (req, res, next) => {
   } catch (error) {
     next(error);
   } finally {
-    console.log(`Route: ${req.url} || Method: ${req.method}`);
+    console.log({
+      status: res.statusCode,
+      method: req.method,
+      route: `${req.protocol}://${req.get("host")}${req.originalUrl}`,
+    });
   }
 };
 
@@ -53,7 +69,11 @@ exports.confirmAccountPersist = async (req, res, next) => {
   } catch (error) {
     next(error);
   } finally {
-    console.log(`Route: ${req.url} || Method: ${req.method}`);
+    console.log({
+      status: res.statusCode,
+      method: req.method,
+      route: `${req.protocol}://${req.get("host")}${req.originalUrl}`,
+    });
   }
 };
 
@@ -64,6 +84,10 @@ exports.accountPersist = async (req, res, next) => {
   } catch (error) {
     next(error);
   } finally {
-    console.log(`Route: ${req.url} || Method: ${req.method}`);
+    console.log({
+      status: res.statusCode,
+      method: req.method,
+      route: `${req.protocol}://${req.get("host")}${req.originalUrl}`,
+    });
   }
 };
