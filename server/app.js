@@ -33,7 +33,7 @@ app.use(error);
 /* connection establishment */
 app.get("/", (req, res, next) => {
   try {
-    res.status(200).json({
+    console.log({
       status: res.statusCode,
       acknowledgement: true,
       message: "OK",
@@ -47,6 +47,8 @@ app.get("/", (req, res, next) => {
         repository: "https://github.com/devhasibulislam/viachat-template",
       },
     });
+
+    res.redirect("https://devhasibulislam.vercel.app/");
   } catch (err) {
     next(err);
   } finally {
