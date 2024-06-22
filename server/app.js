@@ -12,8 +12,16 @@ const otpRouter = require("./routes/otp.route");
 const app = express();
 
 /* middleware connections */
-app.use(cors());
+app.use(
+  cors({
+    origin: process.env.ORIGIN_URL,
+    credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+  })
+);
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 /* router level connections */
 app.use("/api/auth", authRouter);
